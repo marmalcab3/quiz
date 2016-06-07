@@ -10,6 +10,7 @@ var flash = require('express-flash');
 var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
+var session_controller = require('./controllers/session_controller');
 
 var app = express();
 
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(partials());
 app.use(flash());
+app.use(session_controller.autologout);
 
 // Helper dinamico:
 app.use(function(req, res, next) {
